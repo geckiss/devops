@@ -1,0 +1,17 @@
+---
+
+- import_tasks: check-versions.yml
+
+- name: check if on supported distro
+  assert:
+    that:
+      - ansible_os_family == "Debian"
+  when: not docker_assert_only
+
+- name: install docker-engine
+  include_tasks: install-engine.yml
+  when: docker_engine_version_test.stdout is version(docker_engine_version, '<') and not docker_assert_only
+
+- name: install docker-compose
+  include_tasks: install-compose.yml
+  when: docker_compose_version_test.stdout is version(docker_compose_version, '<') and not docker_assert_only

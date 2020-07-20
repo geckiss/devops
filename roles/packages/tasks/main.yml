@@ -1,0 +1,19 @@
+- name: apt update & upgrade
+  apt:
+    update_cache: yes
+    upgrade: yes
+  become: yes
+
+- name: install vital packages
+  apt:
+    name: 
+      - software-properties-common
+      - ecryptfs-utils
+      - cryptsetup
+      - vim
+      - terminator
+      - curl
+      - git
+      - cifs-utils      # mount.cifs (NFS)
+      - net-tools       # netstat
+  become: yes

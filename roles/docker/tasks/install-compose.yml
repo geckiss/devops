@@ -1,0 +1,22 @@
+---
+
+- name: install docker-compose
+  become: yes
+  get_url:
+    url: "https://github.com/docker/compose/releases/download/{{ docker_compose_version }}/docker-compose-{{ ansible_system }}-{{ ansible_userspace_architecture }}" 
+    dest: /usr/local/bin/docker-compose
+    mode: 0751
+    owner: root
+    group: root
+
+- name: install pip3
+  become: yes
+  apt:
+    name:
+      - python3-pip
+      
+- name: install docker-compose lib for Ansible
+  become: yes
+  pip:
+    name: docker-compose
+    executable: pip3

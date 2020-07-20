@@ -1,0 +1,7 @@
+---
+
+# do not make any changes by default
+docker_assert_only: yes
+
+docker_compose_version: "1.22.0"
+docker_engine_version: "18.06.0"

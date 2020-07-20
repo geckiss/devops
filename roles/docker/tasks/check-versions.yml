@@ -1,0 +1,20 @@
+---
+
+- name: get docker version
+  command: "docker version --format '{{ '{{' }}.Server.Version{{ '}}' }}'"
+  register: docker_engine_version_test
+  changed_when: false
+  become: yes
+
+- name: get docker-compose version
+  command: docker-compose version --short
+  register: docker_compose_version_test
+  changed_when: false
+  become: yes
+
+- name: check docker(-compose) version requirements
+  assert:
+    that:
+      - docker_engine_version_test.stdout is version(docker_engine_version, '>=')
+      - docker_compose_version_test.stdout is version(docker_compose_version, '>=')
+  changed_when: false

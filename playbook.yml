@@ -1,0 +1,10 @@
+- name: installs basic packacges
+  connection: local
+  hosts: localhost
+  become: yes
+  roles:
+    - packages
+    - docker
+    - python3
+    - thunderbird
+    - mattermost-desktop
