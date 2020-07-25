@@ -1,0 +1,12 @@
+- name: install multibootusb dependencies
+  apt:
+    name:
+      # MultibootUSB dependencies
+      - python3-pyqt5
+      - python3-pyudev
+      - libqt5designer5
+      - libqt5help5
+      - libqt5test5
+      - sip-py3api-12.3
+  become: yes
+

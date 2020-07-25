@@ -1,0 +1,21 @@
+- name: install virtualbox
+  block:
+    - name: add virtualbox depository to apt sources list
+      apt_repository:
+        repo: deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
+        state: present
+
+    - name: download and register oracle public key
+      apt_key: 
+        url: https://www.virtualbox.org/download/oracle_vbox_2016.asc
+        state: present
+
+    # TODO check fingerprint
+    
+    - name: install virtualbox
+      apt:
+        name: virtualbox-6.1
+        state: present
+      update_cache: yes
+  become: yes
+

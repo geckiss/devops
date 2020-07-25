@@ -1,0 +1,4 @@
+- name: install multibootusb .deb package
+  apt:
+    deb: https://github.com/mbusb/multibootusb/releases/download/v9.2.0/python3-multibootusb_9.2.0-1_all.deb
+  become: yes
