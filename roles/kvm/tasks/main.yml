@@ -1,0 +1,48 @@
+- name: check virtualization support in general on Ubuntu
+  command: "egrep -c '(vmx|svm)' /proc/cpuinfo"
+  register: virtu_check
+  when: ansible_distribution == "Ubuntu"
+
+- assert: 
+    that: virtu_check.stdout|int > 0
+    success_msg: "Virtualization is supported, continuing..."
+    fail_msg: "Virtualization IS NOT supported, aborting..."
+
+- name: install cpu-checker to check KVM support
+  apt:
+    name: cpu-checker
+
+- name: check KVM support
+  command: kvm-ok
+  register: kvm_supp
+
+- assert:
+    that: "'can be used' in kvm_supp.stdout"
+    success_msg: "KVM supported, conti"
+    failed_msg: "KVM IS NOT supported, aborting..."
+
+- name: install KVM and other dependencies
+  apt:
+    name:
+      - qemu    # allows us to perform hardware virutalization
+      - qemu-kvm        # main KVM package
+      - libvirt-daemon  # libvirtd is virtualization daemon
+      - libvirt-clients 
+      - bridge-utils    # creates bridge connection to allow other users to access virtualmachine
+      - virt-manager    # GUI
+
+- name: make sure lbvirtd is running and enable it on boot
+  systemd:
+    name: libvirtd
+    state: started
+    enabled: yes
+
+- name: check if KVM modules are loaded in kernel
+  command: "lsmod | grep -i kvm"
+  register: kvm_mods
+
+- assert:
+    that: "'kvm_intel' in kvm_mods.stdout or 'kvm' in kvm_mods.stdout"
+    success_msg: "KVM modules are loaded, OK"
+    failed_msg: "KVM modules are NOT loaded, aborting..."
+
