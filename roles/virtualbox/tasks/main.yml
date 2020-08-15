@@ -1,8 +1,9 @@
+---
 - name: install virtualbox
   block:
-    - name: add virtualbox depository to apt sources list
+    - name: add virtualbox repository to apt sources list
       apt_repository:
-        repo: deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian {{ ansible_distribution_release }} contrib
+        repo: deb [arch=amd64] https://download.virtualbox.org/virtualbox/debian focal contrib
         state: present
 
     - name: download and register oracle public key
@@ -16,6 +17,6 @@
       apt:
         name: virtualbox-6.1
         state: present
-      update_cache: yes
+        update_cache: yes
   become: yes
 

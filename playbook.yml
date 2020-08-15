@@ -1,10 +1,11 @@
 - name: installs basic packacges
-  connection: local
-  hosts: localhost
-  become: yes
+  hosts: defaults
   roles:
-    - packages
-    - docker
-    - python3
-    - thunderbird
-    - mattermost-desktop
+          #- packages
+          #- docker
+          #- python3
+          #- thunderbird
+          #- mattermost-desktop
+          #- kvm
+          #- virtualbox
+    - bitwarden

@@ -3,10 +3,10 @@
     - name: download mattermost .deb package
       get_url:
         url: https://releases.mattermost.com/desktop/4.5.1/mattermost-desktop-4.5.1-linux-amd64.deb
-        dest: ~/Downloads/mattermost-desktop-4.5.1.deb
+        dest: "{{ ansible_user_dir }}/Downloads/mattermost-desktop-4.5.1.deb"
 
     - name: install mattermost desktop
       apt:
-        deb: ~/Downloads/mattermost-desktop-4.5.1.deb
+        deb: "{{ ansible_user_dir }}/Downloads/mattermost-desktop-4.5.1.deb"
   become: yes
 

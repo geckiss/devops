@@ -1,0 +1,5 @@
+- name: download bitwarden to home dir
+  get_url:
+    url: https://vault.bitwarden.com/download/?app=desktop&platform=linux
+    dest: "{{ ansible_user_dir }}"
+    mode: '0700'
