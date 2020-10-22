@@ -17,6 +17,5 @@
       apt:
         name: virtualbox-6.1
         state: present
-        update_cache: yes
   become: yes
 

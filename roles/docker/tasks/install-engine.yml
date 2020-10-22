@@ -1,12 +1,10 @@
 ---
-
 - name: install apt-transport-https
-  become: yes
   apt:
-    update_cache: yes
     name:
       - apt-transport-https
       - ca-certificates
+  become: yes
 
 - name: add apt docker key
   become: yes
@@ -17,7 +15,6 @@
   become: yes
   apt_repository:
     repo: "deb [arch=amd64] https://download.docker.com/linux/{{ ansible_distribution|lower }} {{ ansible_distribution_release }} stable"
-    update_cache: yes
 
 - name: install docker
   become: yes

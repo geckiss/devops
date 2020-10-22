@@ -1,9 +1,3 @@
-- name: apt update & upgrade
-  apt:
-    update_cache: yes
-    upgrade: yes
-  become: yes
-
 - name: install vital packages
   apt:
     name: 
@@ -13,15 +7,7 @@
       - vim
       - tmux
       - curl
-      - git
       - cifs-utils      # mount.cifs (NFS)
       - net-tools       # netstat
       - nmap
-      # MultibootUSB dependencies
-      - python3-pyqt5 
-      - python3-pyudev 
-      - libqt5designer5 
-      - libqt5help5 
-      - libqt5test5 
-      - sip-py3api-12.3
   become: yes

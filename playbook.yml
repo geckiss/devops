@@ -1,11 +1,11 @@
 - name: installs basic packacges
   hosts: defaults
   roles:
-          #- packages
-          #- docker
-          #- python3
-          #- thunderbird
-          #- mattermost-desktop
-          #- kvm
-          #- virtualbox
-    - bitwarden
+    - packages
+    - docker
+    - python3
+    - thunderbird
+    - mattermost-desktop
+    - kvm
+    - virtualbox
+      #- bitwarden
