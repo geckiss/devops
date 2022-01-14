@@ -1,8 +1,14 @@
-# ansible
+# devops
 
-Repository contains Ansible playbook and roles to setup various tools and services on personal desktop.
+Repository contains various DevOps-related stuff.
 
-## Roles
 
-* Mattermost
-* todo
+## Git
+
+### Aliases
+
+*TODO* 
+
+* add aliases to ansible
+
+Usage: `git <alias>`, e.g. `git st` if made with `git config --global alias.st status`
