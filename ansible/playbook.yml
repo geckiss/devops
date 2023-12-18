@@ -1,11 +1,4 @@
-- name: installs basic packacges
+- name: install baseline
   hosts: defaults
   roles:
-    - packages
-    - docker
-    - python3
-    - thunderbird
-    - mattermost-desktop
-    - kvm
-    - virtualbox
-      #- bitwarden
+    - baseline

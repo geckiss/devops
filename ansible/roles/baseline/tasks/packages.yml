@@ -1,11 +1,10 @@
 - name: apt update & upgrade
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
-    upgrade: yes
-  become: yes
+    upgrade: full
 
 - name: install vital packages
-  apt:
+  ansible.builtin.apt:
     name: 
       - software-properties-common
       - ecryptfs-utils
@@ -21,7 +20,9 @@
       - sip-py3api-12.3
       - htop
       - atop
-      - mc
       - xclip
       - ffmpeg          # Firefox video codec
-  become: yes
+      - thunderbird
+      # Python
+      - python3
+      - python3-pip

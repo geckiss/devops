@@ -1,0 +1,8 @@
+- name: include subfiles
+  ansible.builtin.import_tasks:
+    file: '{{ item }}'
+  loop:
+    - packages.yml
+    - python.yml
+    - mattermost.yml
+    - kvm.yml

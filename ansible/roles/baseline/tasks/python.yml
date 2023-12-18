@@ -1,0 +1,27 @@
+- name: install python
+  ansible.builtin.apt:
+    name: 
+      - python3
+      - python3-pip
+    update_cache: yes
+
+- name: pip install vital python packages
+  ansible.builtin.pip:
+    name: 
+      - setuptools
+      - virtualenv
+      - pipenv
+
+- name: install poetry
+  ansible.builtin.shell: 
+    cmd: curl -sSL https://install.python-poetry.org | POETRY_HOME=/etc/poetry python3 -
+    args:
+      executable: /bin/bash
+      warn: no
+
+- name: enable bash autocompletion for poetry
+  ansible.builtin.shell: 
+    cmd: poetry completions bash >> ~/.bash_completion
+    args:
+      executable: /bin/bash
+      warn: no
